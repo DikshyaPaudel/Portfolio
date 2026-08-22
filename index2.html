@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dikshya Paudel — Python & Backend Software Developer</title>
+  <meta name="description" content="Dikshya Paudel is a Python backend & full-stack software developer based in Nepal specializing in Python, REST APIs, FastAPI, Django, Frappe, and database architectures." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #E6EBD9;
+      --surface-white: #FFFFFF;
+      --surface-dark: #181922;
+      --surface-dark-card: #20222E;
+      --accent-lime: #95E016;
+      --accent-lime-hover: #84CD0B;
+      --text-dark: #12131A;
+      --text-muted: #4B5563;
+      --text-light: #F3F4F6;
+      --text-light-muted: #A0AEC0;
+      --border-light: rgba(18, 19, 26, 0.08);
+      --border-dark: rgba(255, 255, 255, 0.12);
+      --max-width: 1040px;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(230, 235, 217, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+    }
+
+    .nav-brand-badge {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background: var(--accent-lime);
+      border-radius: 4px;
+      border: 2px solid var(--text-dark);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 0.6rem;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-dark);
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Section Utility */
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      background: var(--surface-dark);
+      color: var(--accent-lime);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-badge::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-lime);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      margin-bottom: 2.25rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 3.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5.2vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      color: var(--text-dark);
+    }
+
+    .highlight-badge {
+      display: inline-block;
+      background: var(--accent-lime);
+      color: var(--text-dark);
+      padding: 0.1em 0.35em;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(149, 224, 22, 0.3);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* Profile Photo Card */
+    .photo-card {
+      position: relative;
+    }
+
+    .photo-frame {
+      position: relative;
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 10px;
+      border: 3.5px solid var(--accent-lime);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-frame:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.16), 0 0 24px rgba(149, 224, 22, 0.25);
+    }
+
+    .photo-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: calc(var(--radius) - 6px);
+      display: block;
+    }
+
+    .photo-status-badge {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface-dark);
+      color: #FFFFFF;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-dark);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-lime);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-lime);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(149, 224, 22, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(149, 224, 22, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(149, 224, 22, 0);
+      }
+    }
+
+    /* Hero Content Right */
+    .hero-bio-lead {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-dark);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-bio-secondary {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.75rem;
+      line-height: 1.65;
+    }
+
+    .quick-nav-block {
+      margin: 1.75rem 0;
+    }
+
+    .quick-nav-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .pill-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill-btn {
+      padding: 0.55rem 1.15rem;
+      background: var(--surface-dark);
+      color: var(--text-light);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-btn:hover {
+      background: var(--accent-lime);
+      color: var(--text-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(149, 224, 22, 0.35);
+    }
+
+    /* Mission & Vision Cards */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .mv-card {
+      background: var(--surface-dark);
+      color: var(--text-light);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      border: 1px solid var(--border-dark);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mv-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .mv-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .mv-icon {
+      font-size: 1.1rem;
+    }
+
+    .mv-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-lime);
+    }
+
+    .mv-text {
+      font-size: 0.88rem;
+      color: var(--text-light-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Skills / Specialise Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(149, 224, 22, 0.4);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--surface-dark);
+      color: var(--accent-lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .skill-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .skill-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Tech Stack Pills Bar */
+    .stack-pills-wrap {
+      margin-top: 2rem;
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+    }
+
+    .stack-pills-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.4rem 0.9rem;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text-dark);
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .pill:hover {
+      background: var(--surface-dark);
+      color: var(--accent-lime);
+      border-color: var(--surface-dark);
+    }
+
+    .pill-dark {
+      background: var(--surface-dark);
+      color: var(--text-light);
+      border: 1px solid var(--border-dark);
+    }
+
+    .pill-dark:hover {
+      background: var(--accent-lime);
+      color: var(--text-dark);
+    }
+
+    /* Work Section */
+    .work-grid {
+      display: grid;
+      gap: 1.35rem;
+    }
+
+    .work-card {
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .work-title-group h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .work-company {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .work-date {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--bg);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .work-tag {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--surface-dark);
+      color: var(--accent-lime);
+    }
+
+    .work-list {
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .work-list li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      gap: 1.35rem;
+    }
+
+    .project-card {
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .project-card.featured-card {
+      background: var(--surface-dark);
+      color: var(--text-light);
+      border: 1.5px solid var(--border-dark);
+    }
+
+    .project-card.featured-card .project-meta {
+      color: var(--accent-lime);
+    }
+
+    .project-card.featured-card h3 a {
+      color: var(--text-light);
+    }
+
+    .project-card.featured-card h3 a:hover {
+      color: var(--accent-lime);
+    }
+
+    .project-card.featured-card p {
+      color: var(--text-light-muted);
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card h3 a {
+      color: var(--text-dark);
+      transition: color 0.2s ease;
+    }
+
+    .project-card h3 a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .project-card p {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+      line-height: 1.65;
+    }
+
+    .project-details {
+      margin: 1rem 0;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.1rem;
+    }
+
+    .featured-card .project-details {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-dark);
+    }
+
+    .project-details summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      list-style: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .featured-card .project-details summary {
+      color: var(--accent-lime);
+    }
+
+    .project-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-details summary::before {
+      content: "+";
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      background: var(--accent-lime);
+      color: var(--text-dark);
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .project-details[open] summary::before {
+      content: "-";
+    }
+
+    .project-details[open] summary {
+      margin-bottom: 0.75rem;
+    }
+
+    .project-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .project-features li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.45rem;
+      line-height: 1.55;
+    }
+
+    .project-features li::before {
+      content: "➔";
+      position: absolute;
+      left: 0;
+      color: var(--accent-lime);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+
+    .impact-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      padding: 0.4rem 0.85rem;
+      background: rgba(149, 224, 22, 0.2);
+      border-left: 3px solid var(--accent-lime);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .featured-card .impact-badge {
+      background: rgba(149, 224, 22, 0.15);
+      color: var(--accent-lime);
+    }
+
+    /* Integrations */
+    .integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .integration-card {
+      background: var(--surface-white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .integration-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .integration-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .integration-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: var(--surface-dark);
+      color: var(--text-light);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--border-dark);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .contact-card .section-title {
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-card p {
+      color: var(--text-light-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links a {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-lime);
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent-lime);
+      color: var(--text-dark);
+      box-shadow: 0 8px 24px rgba(149, 224, 22, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-lime-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(149, 224, 22, 0.45);
+    }
+
+    .btn-secondary {
+      background: var(--surface-dark-card);
+      color: var(--text-light);
+      border: 1px solid var(--border-dark);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .photo-card {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .photo-img {
+        height: 380px;
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .contact-card {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sticky Navbar -->
+  <header>
+    <div class="wrap nav-inner">
+      <a href="#" class="nav-brand">
+        <span class="nav-brand-badge"></span>
+        DIKSHYA PAUDEL
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#specialise">Skills</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#integrations">Modules</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / About Section -->
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="section-badge">PYTHON BACKEND DEVELOPER</div>
+        <h1 class="hero-title">
+          PYTHON BACKEND &amp; <br />
+          <span class="highlight-badge">RELIABLE SYSTEMS.</span>
+        </h1>
+
+        <div class="hero-grid">
+          <!-- Left Column: Featured Photo Frame -->
+          <div class="photo-card">
+            <div class="photo-frame">
+              <img src="pic.jpeg" alt="Dikshya Paudel" class="photo-img" />
+              <div class="photo-status-badge">
+                <span class="pulse-dot"></span> Open for Opportunities
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Intro & Quick Nav & Mission/Vision -->
+          <div class="hero-content">
+            <div class="hero-bio-lead">
+              I'm Dikshya, a software developer based in Nepal.
+            </div>
+            <p class="hero-bio">
+              I build backend systems in Python, REST APIs, automation scripts, and data-sync pipelines that replace manual work with reliable software.
+            </p>
+
+
+            <!-- Quick Navigation Pills -->
+            <div class="quick-nav-block">
+              <div class="quick-nav-title">VIEW MY WORK</div>
+              <div class="pill-buttons">
+                <a href="#work" class="pill-btn">WORK EXPERIENCE</a>
+                <a href="#specialise" class="pill-btn">SKILLS</a>
+                <a href="#projects" class="pill-btn">PROJECTS</a>
+                <a href="#integrations" class="pill-btn">INTEGRATIONS</a>
+                <a href="#contact" class="pill-btn">CONTACT</a>
+              </div>
+            </div>
+
+            <!-- Mission & Vision Dark Cards -->
+            <div class="mv-grid">
+              <div class="mv-card">
+                <div class="mv-header">
+                  <span class="mv-icon"></span>
+                  <span class="mv-title">MISSION</span>
+                </div>
+                <p class="mv-text">
+                  To engineer robust Python backend systems, REST APIs, and automated workflows that streamline business operations and eliminate manual friction.
+                </p>
+              </div>
+
+              <div class="mv-card">
+                <div class="mv-header">
+                  <span class="mv-icon"></span>
+                  <span class="mv-title">VISION</span>
+                </div>
+                <p class="mv-text">
+                  To build high-performance, maintainable software architectures and data models that scale effortlessly with growing enterprise needs.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Bar -->
+    <section style="padding: 1rem 0 3rem 0;">
+      <div class="wrap">
+        <div class="stack-pills-wrap">
+          <div class="stack-pills-title">MY TECH STACK INCLUDES</div>
+          <div class="pills">
+            <span class="pill pill-dark">Python</span>
+            <span class="pill pill-dark">FastAPI</span>
+            <span class="pill pill-dark">Django</span>
+            <span class="pill pill-dark">REST API</span>
+            <span class="pill pill-dark">Frappe Framework</span>
+            <span class="pill pill-dark">ERPNext</span>
+            <span class="pill pill-dark">JavaScript</span>
+            <span class="pill pill-dark">MariaDB</span>
+            <span class="pill pill-dark">PostgreSQL</span>
+            <span class="pill pill-dark">Redis</span>
+            <span class="pill pill-dark">Docker</span>
+            <span class="pill pill-dark">Git</span>
+            <span class="pill pill-dark">Linux</span>
+            <span class="pill pill-dark">Docker</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills / Specialise Section -->
+         <!-- Skills / Specialise Section -->
+    <section id="specialise">
+      <div class="wrap">
+        <div class="section-badge">EXPERTISE</div>
+        <h2 class="section-title">I specialise in</h2>
+        <p class="section-sub"></p>
+ 
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="5" rx="9" ry="3" />
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                </svg>
+              </div>
+              <h3>Python Backend Development</h3>
+            </div>
+            <p>Server-side logic, validations, scheduled jobs, and document lifecycle automation, written in Python across FastAPI, Django, and Frappe.</p>
+          </article>
+ 
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+                </svg>
+              </div>
+              <h3>REST API Design &amp; Integration</h3>
+            </div>
+            <p>Secure, documented REST APIs and sync pipelines — payment gateways, biometric attendance, and third-party services wired into production systems.</p>
+          </article>
+ 
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="5" rx="9" ry="3" />
+                  <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                  <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6" />
+                </svg>
+              </div>
+              <h3>Database &amp; Data Modelling</h3>
+            </div>
+            <p>PostgreSQL and MariaDB — schema design, query optimization, and data models for systems that hold years of transactional history.</p>
+          </article>
+ 
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+              </div>
+              <h3>Automation &amp; Scripting</h3>
+            </div>
+            <p>Python scripts and background workers that remove manual, repetitive work — from attendance processing to async document-extraction queues.</p>
+          </article>
+ 
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              </div>
+              <h3>Full Stack Delivery</h3>
+            </div>
+            <p>Python backends paired with JavaScript frontends — client scripts, dynamic pages, and storefronts, shipped end to end.</p>
+          </article>
+ 
+          <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                </svg>
+              </div>
+              <h3>Applied AI / LLM APIs</h3>
+            </div>
+            <p>Wiring vision and language models (Gemini) into Python services with human-in-the-loop review, confidence scoring, and validation.</p>
+          </article>
+
+           <article class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon-wrap">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                </svg>
+              </div>
+              <h3>ERP &amp; Business Systems</h3>
+            </div>
+            <p>Industry ERP for construction, manufacturing, logistics, automotive, ecommerce, and service — LC modules, job cards, manifest settlement, and fiscal compliance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="work">
+      <div class="wrap">
+        <div class="section-badge">CAREER HISTORY</div>
+        <h2 class="section-title">Work</h2>
+        <p class="section-sub">Professional experience across full-time, freelance, and remote roles.</p>
+
+        <div class="work-grid">
+
+          <article class="work-card">
+            <div class="work-header">
+              <div class="work-title-group">
+                <h3>Python Developer</h3>
+                <div class="work-company">Sajeelo Infotech &middot; Freelance</div>
+              </div>
+              <span class="work-date">May 2026 &ndash; Jun 2026</span>
+            </div>
+            <div class="work-tags">
+              <span class="work-tag">Ecommerce &amp; Delivery Platform</span>
+              <span class="work-tag">Vehicle Management System</span>
+            </div>
+            <ul class="work-list">
+              <li>Built 3+ configurable page components with live publishing workflows.</li>
+              <li>Developed 15+ Python REST APIs and JS sync pipelines &mdash; ~70% less manual data entry.</li>
+              <li>Delivered Vehicle Management System in Python: job cards, QC, spare parts, billing, scheduling.</li>
+            </ul>
+          </article>
+
+          <article class="work-card">
+            <div class="work-header">
+              <div class="work-title-group">
+                <h3>Python Developer</h3>
+                <div class="work-company">Raindrop Inc. &middot; Full-time</div>
+              </div>
+              <span class="work-date">Sep 2024 &ndash; Apr 2026</span>
+            </div>
+            <div class="work-tags">
+              <span class="work-tag">Construction</span>
+              <span class="work-tag">Manufacturing</span>
+              <span class="work-tag">Logistics</span>
+            </div>
+            <ul class="work-list">
+              <li>Built 41-doctype construction ERP from scratch across procurement, labour tracking, and project scheduling.</li>
+              <li>Wrote Python validation handlers spanning purchase orders, receipts, quotations, and invoices</li>
+              <li>Implemented Sales credit control &mdash; bill count, days limit, and outstanding amount checks on invoice save.</li>
+              <li>Custom financial reports: vehicle expense tracking and supplier quotation comparison.</li>
+              <li>Integrated Fonepay payment gateway via Python REST API, eliminating manual payment reconciliation.</li>
+              <li>Automated biometric attendance for 50+ employees with a Python sync job, saving ~4 hrs/week of HR manual work.</li>
+            </ul>
+          </article>
+
+          <article class="work-card">
+            <div class="work-header">
+              <div class="work-title-group">
+                <h3>Frappe Developer</h3>
+                <div class="work-company">AGB Company &middot; Remote &middot; Egypt</div>
+              </div>
+              <span class="work-date">Aug 2025 &ndash; Jan 2026</span>
+            </div>
+            <div class="work-tags">
+              <span class="work-tag">Spa &amp; Service</span>
+              <span class="work-tag">Ecommerce</span>
+            </div>
+            <ul class="work-list">
+              <li>Spa &amp; service ERP &mdash; booking, scheduling, 5+ custom doctypes across 2 time zones.</li>
+              <li>Ecommerce front-end with 100+ product listings and online ordering.</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-badge">PORTFOLIO</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">Client and personal work &mdash; scan the summary, expand any card for detail.</p>
+
+        <div class="projects-grid">
+
+          <!-- SnapLedger (Featured Dark Card) -->
+          <article class="project-card">
+            <div class="project-meta">Personal &middot; AI &amp; FinTech &middot; Live App</div>
+            <h3><a href="https://snapledger-api.onrender.com/app/" target="_blank">SnapLedger &mdash; Receipt &amp; Invoice Intelligence ↗</a></h3>
+            <p>API and web app that turns photos of receipts and invoices into structured data using Gemini vision LLM, async Redis background workers, and human-in-the-loop verification.</p>
+            
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Human-in-the-Loop Architecture &mdash; Uncouples extraction (<code>POST /extract</code>) from persistence (<code>POST /receipts</code>) with an editable review UI to prevent unverified AI errors in financial ledgers</li>
+                <li>Async Background Queue &mdash; Non-blocking processing via FastAPI + Redis + <code>arq</code> returning instant job IDs with status polling (<code>GET /jobs/{id}</code>)</li>
+                <li>LLM Vision Parsing &mdash; Utilizes Gemini vision model to reason about document structure without fragile vendor-specific OCR regex rules</li>
+                <li>Validation &amp; Fraud Prevention &mdash; Non-receipt rejection, AI confidence scoring, category estimation, and duplicate detection (matching vendor, total, and dates)</li>
+              </ul>
+            </details>
+
+            <div class="pills">
+              <span class="pill pill-dark">FastAPI</span>
+              <span class="pill pill-dark">Gemini Vision API</span>
+              <span class="pill pill-dark">Redis / arq</span>
+              <span class="pill pill-dark">PostgreSQL</span>
+              <span class="pill pill-dark">Docker Compose</span>
+              <span class="pill pill-dark">pytest</span>
+            </div>
+
+            <div class="impact-badge">
+              ⚡ Impact: Automates document parsing with human review safeguarding ledger accuracy
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-meta">2024 &ndash; 2026 &middot; Raindrop &middot; Construction</div>
+            <h3><a href="#">Construction Backend System</a></h3>
+            <p>A 41-model Python backend for large-scale construction — 7-tier schedule billing, letter-of-credit logic with bank-limit enforcement, and BOQ-to-invoice automation.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>7-tier schedules &mdash; project issue auto-creates stock entries; blocks over-issuance</li>
+                <li>Letter of credit &mdash; one-off/regular limits, PO linkage, receipt &amp; payment sync</li>
+                <li>Nested BOQ tasks &mdash; tower-wise mapping synced to project schedules in Python</li>
+                <li>Progress to invoice &mdash; sales invoice, delivery note &amp; RFQ logic drives schedule quantities</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Python</span>
+              <span class="pill pill-dark">Frappe</span>
+              <span class="pill pill-dark">41 Data Models</span>
+              <span class="pill pill-dark">LC/BG Logic</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: LC tracking errors reduced to near zero
+            </div>
+          </article>
+ 
+          <!-- Spa & Service Backend -->
+          <article class="project-card">
+            <div class="project-meta">2025 &ndash; 2026 &middot; Spa &amp; Service &middot; Egypt</div>
+            <h3><a href="#">Spa &amp; Service Backend</a></h3>
+            <p>Remote booking &amp; scheduling backend, plus a storefront serving 100+ products &mdash; built in Python and delivered across 2 time zones.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>5+ Python data models &mdash; appointments, staff schedules, and service booking workflows</li>
+                <li>Storefront backend &mdash; 100+ product listings with online ordering</li>
+                <li>Server-side validations &mdash; reduced double-booking and scheduling conflicts</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Python</span>
+              <span class="pill pill-dark">Frappe</span>
+              <span class="pill pill-dark">Booking Logic</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: ~40% fewer scheduling errors
+            </div>
+          </article>
+ 
+          <!-- Quick Commerce API -->
+          <article class="project-card">
+            <div class="project-meta">2026 &middot; Quick Commerce &middot; Nepal</div>
+            <h3><a href="#">API Integration Layer</a></h3>
+            <p>15+ Python REST endpoints for a 10-minute grocery delivery app &mdash; real-time branch, inventory, sales, purchase, and HR sync.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Sales &amp; purchase APIs &mdash; invoices, returns, and updates synced downstream</li>
+                <li>Master data sync &mdash; customers, vendors, items, employees, and branches</li>
+                <li>HR &amp; attendance APIs &mdash; check-ins, rosters, overtime &amp; efficiency reports</li>
+                <li>Stock-damage API and an attendance processing tool for warehouse ops</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Python</span>
+              <span class="pill pill-dark">REST API</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: Real-time stock accuracy for a 10-minute delivery SLA
+            </div>
+          </article>
+ 
+          <!-- Financial Automation Suite -->
+          <article class="project-card">
+            <div class="project-meta">2025 &ndash; 2026 &middot; Manufacturing &middot; Nepal</div>
+            <h3><a href="#">Financial Automation Suite</a></h3>
+            <p>Python validation handlers and reports for a manufacturing back office &mdash; tax withholding, credit control, and custom reporting.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Purchase TDS handler &mdash; validations across PO, receipt, quotation &amp; invoice</li>
+                <li>Excise &amp; VAT ledger &mdash; automated GL entries and tax rows</li>
+                <li>Sales credit control &mdash; bill count, days limit &amp; outstanding checks on save</li>
+                <li>Custom Python reports &mdash; vehicle expense tracking &amp; quotation comparison</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Python</span>
+              <span class="pill pill-dark">Tax Automation</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: Stricter tax compliance and automated credit enforcement
+            </div>
+          </article>
+ 
+          <!-- Vehicle Workshop System -->
+          <article class="project-card">
+            <div class="project-meta">2026 &middot; Automotive &middot; Nepal</div>
+            <h3><a href="#">Vehicle Workshop System</a></h3>
+            <p>A Python-driven workshop backend &mdash; job cards, quality inspection, warranty claims, technician assignment, spare parts, and billing.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Job cards &mdash; complaints, work items, service items &amp; technician assignment</li>
+                <li>Quality inspection &mdash; request workflow with structured QC readings</li>
+                <li>Warranty claims &mdash; line-item tracking linked to job card operations</li>
+                <li>Vehicle search &amp; centralized settings for workshop configuration</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Python</span>
+              <span class="pill pill-dark">Frappe</span>
+              <span class="pill pill-dark">QC Logic</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: End-to-end service operations on a single platform
+            </div>
+          </article>
+ 
+          <!-- Budget Buddy -->
+          <article class="project-card">
+            <div class="project-meta">Personal &middot; Django</div>
+            <h3><a href="https://github.com/DikshyaPaudel/BudgetBuddy" target="_blank">Budget Buddy ↗</a></h3>
+            <p>A full-stack expense tracker with a Django + PostgreSQL backend, Google OAuth, and Chart.js dashboards.</p>
+ 
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Django + PostgreSQL backend with RESTful expense CRUD</li>
+                <li>Google OAuth &mdash; secure sign-in without password management</li>
+                <li>Categorized expenses &mdash; separate personal vs. business reporting</li>
+                <li>Chart.js dashboards &mdash; visual spend breakdown by category &amp; period</li>
+              </ul>
+            </details>
+ 
+            <div class="pills">
+              <span class="pill pill-dark">Django</span>
+              <span class="pill pill-dark">PostgreSQL</span>
+              <span class="pill pill-dark">Chart.js</span>
+            </div>
+ 
+            <div class="impact-badge">
+              ⚡ Impact: Categorized expense tracking with OAuth login
+            </div>
+          </article>
+
+
+          <!-- Open Source Letter of Credit -->
+          <article class="project-card">
+            <div class="project-meta">Open Source &middot; Frappe</div>
+            <h3><a href="https://github.com/DikshyaPaudel/Letter-of-Credit" target="_blank">Letter of Credit Module ↗</a></h3>
+            <p>Reusable LC module &mdash; issuance, usage, on/off transitions, bank limits, and automated validations for ERPNext.</p>
+
+            <details class="project-details">
+              <summary>View details</summary>
+              <ul class="project-features">
+                <li>Full LC lifecycle &mdash; issuance, usage, LC on/off state transitions</li>
+                <li>Bank LC limits &mdash; One-off vs Regular categories with balance enforcement</li>
+                <li>Linked documents &mdash; PO, Purchase Receipt &amp; Payment Entry sync</li>
+                <li>Automated validations &mdash; prevents limit overruns and tracking errors</li>
+              </ul>
+            </details>
+
+            <div class="pills">
+              <span class="pill pill-dark">Frappe</span>
+              <span class="pill pill-dark">ERPNext</span>
+              <span class="pill pill-dark">Python</span>
+            </div>
+
+            <div class="impact-badge">
+              ⚡ Impact: Open-source LC lifecycle for construction finance
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integrations">
+      <div class="wrap">
+        <div class="section-badge">MODULES</div>
+        <h2 class="section-title">Integrations</h2>
+        <p class="section-sub">Reusable modules deployed across client sites.</p>
+
+        <div class="integrations-grid">
+          <div class="integration-card">
+            <h3>Payment Gateway</h3>
+            <p>Dynamic QR payments &amp; automated reconciliation via Python REST API.</p>
+          </div>
+
+          <div class="integration-card">
+            <h3>Biometric (K40)</h3>
+            <p>Auto attendance sync for 50+ employees saving ~4 hrs/week of HR manual work.</p>
+          </div>
+
+          <div class="integration-card">
+            <h3>IRD Compliance</h3>
+            <p>Nepali tax reporting customizations, VAT ledgers, and TDS handlers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-card">
+          <div class="section-badge">CONTACT</div>
+          <h2 class="section-title">Get In Touch</h2>
+          <p>Open to full-time, contract, and remote opportunities. I focus on systems that solve real business problems.</p>
+
+          <div class="contact-links">
+            <a href="mailto:dikshyapaudel9@gmail.com">dikshyapaudel9@gmail.com</a>
+            <a href="tel:+9779869085197">(+977) 9869085197</a>
+          </div>
+
+          <div class="btn-group">
+            <a href="DikshyaPaudel.pdf" class="btn btn-primary" download>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download CV
+            </a>
+            <a href="https://github.com/DikshyaPaudel" class="btn btn-secondary" target="_blank">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; 2026 Dikshya Paudel &middot; Software Developer
+    </div>
+  </footer>
+
+</body>
+
+</html>
